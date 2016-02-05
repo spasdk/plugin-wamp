@@ -13,7 +13,7 @@ var extend   = require('extend'),
 // main
 profiles.default = extend(true, {}, config, {
     // listening port (0 - random)
-    port: 0
+    port: 9000
 });
 
 
