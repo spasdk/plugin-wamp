@@ -1,0 +1,33 @@
+{
+    "name": "spa-plugin-wamp",
+    "version": "1.0.0",
+    "description": "Web Application Messaging Protocol.",
+    "author": {
+        "name": "Stanislav Kalashnik",
+        "email": "darkpark.main@gmail.com"
+    },
+    "repository": "spasdk/plugin-wamp",
+    "scripts": {
+        "lint": "eslint *.js",
+        "jsdoc": "jsdoc --destination doc *.js readme.md"
+    },
+    "dependencies": {
+        "extend": "3.*.*",
+        "bufferutil": "1.*.*",
+        "cjs-wamp": "1.*.*",
+        "debug": "2.*.*",
+        "utf-8-validate": "1.*.*",
+        "ws": "1.*.*"
+    },
+    "keywords": [
+        "spa",
+        "spasdk",
+        "framework",
+        "gulp",
+        "develop",
+        "task",
+        "wamp",
+        "server"
+    ],
+    "license": "GPL-3.0"
+}
