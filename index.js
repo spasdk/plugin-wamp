@@ -9,7 +9,8 @@ var Wamp     = require('cjs-wamp'),
     Plugin   = require('spasdk/lib/plugin'),
     app      = require('spasdk/lib/app'),
     plugin   = new Plugin({name: 'wamp', entry: 'serve', config: require('./config')}),
-    uniqueId = 1,
+    clientId = 1,
+    targetId = 1,
     clients  = {},
     targets  = {};
 
@@ -31,7 +32,6 @@ plugin.profiles.forEach(function ( profile ) {
         server.on('connection', function connection ( connection ) {
             // wrap
             connection = {
-                id:   uniqueId++,
                 wamp: new Wamp(connection),
                 type: connection.upgradeReq.url.slice(1).split('/')[0],
                 host: connection.upgradeReq.connection.remoteAddress,
@@ -41,9 +41,11 @@ plugin.profiles.forEach(function ( profile ) {
             // setup pool
             switch ( connection.type ) {
                 case 'client':
+                    connection.id = clientId++;
                     clients[connection.id] = connection;
                     break;
                 case 'target':
+                    connection.id = targetId++;
                     targets[connection.id] = connection;
                     break;
                 default:
@@ -146,6 +148,13 @@ plugin.profiles.forEach(function ( profile ) {
 
                 plugin.debug('end '.red + connection.type.bold + ' connection #' + connection.id + ' from ' + connection.host.bold);
             });
+
+            // notify all clients about new targets
+            if ( connection.type === 'target' ) {
+                Object.keys(clients).forEach(function ( id ) {
+                    clients[id].wamp.call('eventTargetOnline', {id: connection.id});
+                });
+            }
         });
     });
 
