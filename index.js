@@ -7,6 +7,7 @@
 
 var Wamp     = require('cjs-wamp'),
     Plugin   = require('spasdk/lib/plugin'),
+    app      = require('spasdk/lib/app'),
     plugin   = new Plugin({name: 'wamp', entry: 'serve', config: require('./config')}),
     uniqueId = 1,
     clients  = {},
@@ -79,6 +80,28 @@ plugin.profiles.forEach(function ( profile ) {
                     }
 
                     callback(null, data);
+                },
+                getPlugins: function ( params, callback ) {
+                    var data = {},
+                        name;
+
+                    for ( name in app.plugins ) {
+                        data[name] = {
+                            name:   app.plugins[name].name,
+                            config: app.plugins[name].config
+                        };
+                    }
+
+                    callback(null, data);
+                },
+                getTasks: function ( params, callback ) {
+                    callback(null, Object.keys(app.runner.tasks));
+                },
+                runTask: function ( params, callback ) {
+                    app.runner.run(params.id);
+
+                    // todo: return run status
+                    callback(null, true);
                 }
             });
 
