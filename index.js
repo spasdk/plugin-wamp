@@ -198,5 +198,11 @@ plugin.profiles.forEach(function ( profile ) {
 });
 
 
+plugin.message = function ( data ) {
+    Object.keys(clients).forEach(function ( id ) {
+        clients[id].wamp.call('message', data);
+    });
+};
+
 // public
 module.exports = plugin;
