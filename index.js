@@ -57,6 +57,12 @@ plugin.profiles.forEach(function ( profile ) {
 
             // general API methods and events
             connection.wamp.addListeners({
+                getInfo: function ( params, callback ) {
+                    callback(null, {
+                        path: app.paths.root,
+                        package: app.package
+                    });
+                },
                 getClients: function ( params, callback ) {
                     var data = {},
                         id;
@@ -97,7 +103,15 @@ plugin.profiles.forEach(function ( profile ) {
                     callback(null, data);
                 },
                 getTasks: function ( params, callback ) {
-                    callback(null, Object.keys(app.runner.tasks));
+                    var data = {},
+                        id;
+
+                    for ( id in app.runner.tasks ) {
+                        data[id] = {
+                            running: !!app.runner.tasks[id].running
+                        };
+                    }
+                    callback(null, data);
                 },
                 runTask: function ( params, callback ) {
                     app.runner.run(params.id);
@@ -155,6 +169,18 @@ plugin.profiles.forEach(function ( profile ) {
                     clients[id].wamp.call('eventTargetOnline', {id: connection.id});
                 });
             }
+        });
+
+        app.runner.addListener('start', function ( event ) {
+            Object.keys(clients).forEach(function ( id ) {
+                clients[id].wamp.call('eventTaskStart', event);
+            });
+        });
+
+        app.runner.addListener('finish', function ( event ) {
+            Object.keys(clients).forEach(function ( id ) {
+                clients[id].wamp.call('eventTaskFinish', event);
+            });
         });
     });
 
