@@ -17,15 +17,16 @@ var Wamp     = require('cjs-wamp'),
 
 // create tasks for profiles
 plugin.profiles.forEach(function ( profile ) {
-    var server;
+    var server, serverDone;
 
     // main entry task
     profile.task(plugin.entry, function ( done ) {
         server = new (require('ws').Server)({port: profile.data.port});
+        serverDone = done;
 
         // ready
         server.on('listening', function listening () {
-            plugin.debug('start '.green + ('server on port ' + server._server.address().port).bold);
+            plugin.debug('start server on port ' + server._server.address().port);
         });
 
         // new connect
@@ -53,7 +54,7 @@ plugin.profiles.forEach(function ( profile ) {
                     return connection.wamp.socket.close();
             }
 
-            plugin.debug('new '.green + connection.type.bold + ' connection #' + connection.id + ' from ' + connection.host.bold);
+            plugin.debug('new ' + connection.type + ' connection #' + connection.id + ' from ' + connection.host);
 
             // general API methods and events
             connection.wamp.addListeners({
@@ -160,7 +161,7 @@ plugin.profiles.forEach(function ( profile ) {
                     }
                 }
 
-                plugin.debug('end '.red + connection.type.bold + ' connection #' + connection.id + ' from ' + connection.host.bold);
+                plugin.debug('end ' + connection.type + ' connection #' + connection.id + ' from ' + connection.host);
             });
 
             // notify all clients about new targets
@@ -187,12 +188,13 @@ plugin.profiles.forEach(function ( profile ) {
     profile.task('stop', function () {
         if ( server ) {
             profile.notify({
-                info: 'stop '.green + srcDir.bold,
                 title: 'stop',
-                message: 'stop ' + srcDir
+                message: 'stop'
             });
 
             server.close();
+            server = null;
+            serverDone();
         }
     });
 });
