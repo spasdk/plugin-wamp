@@ -97,7 +97,8 @@ plugin.profiles.forEach(function ( profile ) {
                     for ( name in app.plugins ) {
                         data[name] = {
                             name:   app.plugins[name].name,
-                            config: app.plugins[name].config
+                            //config: app.plugins[name].config
+                            config: 'Converting circular structure to JSON in SASS'
                         };
                     }
 
