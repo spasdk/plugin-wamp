@@ -190,7 +190,7 @@ plugin.profiles.forEach(function ( profile ) {
         if ( server ) {
             profile.notify({
                 title: 'stop',
-                message: 'stop'
+                info: 'stop'
             });
 
             server.close();
