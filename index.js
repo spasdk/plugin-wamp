@@ -30,7 +30,7 @@ plugin.profiles.forEach(function ( profile ) {
         });
 
         // new connect
-        server.on('connection', function connection ( connection ) {
+        server.on('connection', function ( connection ) {
             // wrap
             connection = {
                 wamp: new Wamp(connection),
@@ -51,7 +51,8 @@ plugin.profiles.forEach(function ( profile ) {
                     break;
                 default:
                     plugin.debug('wrong connection type');
-                    return connection.wamp.socket.close();
+                    connection.wamp.socket.close();
+                    return;
             }
 
             plugin.debug('new ' + connection.type + ' connection #' + connection.id + ' from ' + connection.host);
