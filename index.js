@@ -64,6 +64,9 @@ plugin.profiles.forEach(function ( profile ) {
                         package: app.package
                     });
                 },
+                getMemoryUsage: function ( params, callback ) {
+                    callback(null, process.memoryUsage());
+                },
                 getClients: function ( params, callback ) {
                     var data = {},
                         id;
