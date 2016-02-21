@@ -172,7 +172,10 @@ plugin.profiles.forEach(function ( profile ) {
             // notify all clients about new targets
             if ( connection.type === 'target' ) {
                 Object.keys(clients).forEach(function ( id ) {
-                    clients[id].wamp.call('eventTargetOnline', {id: connection.id});
+                    clients[id].wamp.call('eventTargetOnline', {
+                        id:   connection.id,
+                        host: connection.host
+                    });
                 });
             }
         });
