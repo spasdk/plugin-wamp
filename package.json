@@ -23,9 +23,8 @@
         "spa",
         "spasdk",
         "framework",
-        "gulp",
         "develop",
-        "task",
+        "plugin",
         "wamp",
         "server"
     ],
