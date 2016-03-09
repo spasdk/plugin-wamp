@@ -20,6 +20,9 @@
         "utf-8-validate": "1.*.*",
         "ws": "1.*.*"
     },
+    "devDependencies": {
+        "spa-eslint-config": "spasdk/eslint-config"
+    },
     "keywords": [
         "spa",
         "spasdk",
