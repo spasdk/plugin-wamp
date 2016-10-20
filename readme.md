@@ -1,9 +1,10 @@
 Web Application Messaging Protocol
 ==================================
 
-[![Build Status](https://img.shields.io/travis/spasdk/plugin-wamp.svg?style=flat-square)](https://travis-ci.org/spasdk/plugin-wamp)
-[![NPM version](https://img.shields.io/npm/v/spa-plugin-wamp.svg?style=flat-square)](https://www.npmjs.com/package/spa-plugin-wamp)
-[![Dependencies Status](https://img.shields.io/david/spasdk/plugin-wamp.svg?style=flat-square)](https://david-dm.org/spasdk/plugin-wamp)
+[![build status](https://img.shields.io/travis/spasdk/plugin-wamp.svg?style=flat-square)](https://travis-ci.org/spasdk/plugin-wamp)
+[![npm version](https://img.shields.io/npm/v/spa-plugin-wamp.svg?style=flat-square)](https://www.npmjs.com/package/spa-plugin-wamp)
+[![dependencies status](https://img.shields.io/david/spasdk/plugin-wamp.svg?style=flat-square)](https://david-dm.org/spasdk/plugin-wamp)
+[![devDependencies status](https://img.shields.io/david/dev/spasdk/plugin-wamp.svg?style=flat-square)](https://david-dm.org/spasdk/plugin-wamp?type=dev)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-blue.svg?style=flat-square)](https://gitter.im/DarkPark/spasdk)
 
 
