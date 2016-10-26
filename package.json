@@ -20,7 +20,7 @@
         "bufferutil": "1.*.*",
         "cjs-wamp": "1.*.*",
         "debug": "2.*.*",
-        "spa-plugin": "spasdk/plugin",
+        "spa-plugin": "1.*.*",
         "utf-8-validate": "1.*.*",
         "ws": "1.*.*"
     },
