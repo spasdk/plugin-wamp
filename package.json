@@ -17,15 +17,15 @@
     },
     "dependencies": {
         "extend": "3.*.*",
-        "bufferutil": "1.*.*",
+        "bufferutil": "3.*.*",
         "cjs-wamp": "1.*.*",
         "debug": "2.*.*",
         "spa-plugin": "1.*.*",
-        "utf-8-validate": "2.*.*",
-        "ws": "1.*.*"
+        "utf-8-validate": "3.*.*",
+        "ws": "3.*.*"
     },
     "devDependencies": {
-        "eslint": "3.*.*",
+        "eslint": "4.*.*",
         "spa-eslint-config": "1.*.*"
     },
     "keywords": [
