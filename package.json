@@ -19,7 +19,7 @@
         "extend": "3.*.*",
         "bufferutil": "3.*.*",
         "cjs-wamp": "1.*.*",
-        "debug": "2.*.*",
+        "debug": "3.*.*",
         "spa-plugin": "1.*.*",
         "utf-8-validate": "3.*.*",
         "ws": "3.*.*"
